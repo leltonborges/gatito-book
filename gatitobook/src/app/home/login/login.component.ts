@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Autenticacao} from "../../../models/autenticacao.model";
 import {AutenticacaoService} from "../../autenticacao/autenticacao.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   private _usuario: Autenticacao = new Autenticacao();
 
   constructor(
-    private authService: AutenticacaoService
+    private authService: AutenticacaoService,
+    private router: Router
   ) {
   }
 
@@ -29,7 +31,10 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.autentica(this.usuario.login, this.usuario.senha)
       .subscribe(result => {
-        console.log("sucesso")
-      }, error => console.log(error))
+        this.router.navigate(['animais'])
+      }, error => {
+        alert("Erro de autenticação!!")
+        console.error(error)
+      })
   }
 }
