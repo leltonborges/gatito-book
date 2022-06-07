@@ -3,12 +3,22 @@
 <form class="form mt-4" (ngSubmit)="login()">
   <div class="mb-3">
     <input class="form-control" [(ngModel)]="usuario.login" name="usuario"
-           id="usuario" placeholder="Nome do usuário" type="text"/>
+           id="usuario" placeholder="Nome do usuário" type="text"
+           #campoUsuario="ngModel" required
+    />
+    <app-mensagem *ngIf="campoUsuario.invalid"
+      mensagem="Usuário obrigatório">
+    </app-mensagem>
   </div>
 
   <div class="mb-3">
     <input type="password" class="form-control" [(ngModel)]="usuario.senha"
-           placeholder="Senha" name="senha" id="senha"/>
+           placeholder="Senha" name="senha" id="senha"
+           #campoSenha="ngModel" required
+    />
+    <app-mensagem *ngIf="campoSenha.invalid"
+                  mensagem="Senha obrigatório">
+    </app-mensagem>
   </div>
 
   <div class="d-grid gap-2">
