@@ -15,7 +15,7 @@ export class AutenticacaoService {
   autentica(usuario: string, senha: string): Observable<any>{
     return this.httpClient.post(`${BASE.urlBase}/user/login`, {
       userName: usuario,
-      password: senha  
+      password: senha
     })
   }
 }
