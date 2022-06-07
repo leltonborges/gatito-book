@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Autenticacao} from "../../../models/autenticacao.model";
+import {AutenticacaoService} from "../../autenticacao/autenticacao.service";
 
 @Component({
   selector: 'app-login',
@@ -7,11 +8,11 @@ import {Autenticacao} from "../../../models/autenticacao.model";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private _usuario: Autenticacao;
+  private _usuario: Autenticacao = new Autenticacao();
 
-  constructor() {
-    this._usuario = new Autenticacao();
-    this._usuario.login = '222'
+  constructor(
+    private authService: AutenticacaoService
+  ) {
   }
 
   get usuario(): Autenticacao {
@@ -26,9 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(`
-    login: ${this._usuario.login}
-    senha: ${this.usuario.senha}
-    `)
+    this.authService.autentica(this.usuario.login, this.usuario.senha)
+      .subscribe(result => {
+        console.log("sucesso")
+      }, error => console.log(error))
   }
 }
