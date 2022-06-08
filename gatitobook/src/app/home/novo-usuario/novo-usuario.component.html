@@ -1,20 +1,20 @@
 <h3 class="text-center">Registre-se</h3>
 
-<form class="form mt-4">
+<form class="form mt-4" [formGroup]="novoUsuariForm" (submit)="cadastrar()">
   <div class="form-group mb-3">
-    <input type="email" name="email" id="email"
+    <input type="email" name="email" id="email" formControlName="email"
            class="form-control" placeholder="example@example.com">
   </div>
   <div class="form-group mb-3">
-    <input type="text" name="nome" id="nome"
+    <input type="text" name="nome" id="nome" formControlName="fullName"
            class="form-control" placeholder="Nome completo">
   </div>
   <div class="form-group mb-3">
-    <input type="text" name="usuario" id="usuario"
+    <input type="text" name="usuario" id="usuario" formControlName="userName"
            class="form-control" placeholder="login">
   </div>
   <div class="form-group mb-3">
-    <input type="password" name="senha" id="senha"
+    <input type="password" name="senha" id="senha" formControlName="password"
            class="form-control" placeholder="Senha">
   </div>
   <div class="d-grid gap-2 mb-3">
