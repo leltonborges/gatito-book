@@ -11,9 +11,14 @@ export class NovoUsuarioService {
 
   constructor(
     private httpClient : HttpClient
-  ) {}
+  ) {
+  }
 
-  cadastraNovoUsuario(novoUsario: NovoUsuario): Observable<NovoUsuario>{
-    return this.httpClient.post<NovoUsuario>( `${ BASE.urlBase }/user/signup`, novoUsario)
+  cadastraNovoUsuario( novoUsario : NovoUsuario ) : Observable<NovoUsuario> {
+    return this.httpClient.post<NovoUsuario>( `${ BASE.urlBase }/user/signup`, novoUsario )
+  }
+
+  verificaUsuarioExistente( nomeUsuario : string ): Observable<NovoUsuario> {
+    return this.httpClient.get<NovoUsuario>( `${ BASE.urlBase }/user/exists/${nomeUsuario}` )
   }
 }
