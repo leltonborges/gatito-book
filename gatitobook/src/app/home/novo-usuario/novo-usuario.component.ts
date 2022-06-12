@@ -3,41 +3,45 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NovoUsuarioService } from "./novo-usuario.service";
 import { NovoUsuario } from "./novo-usuario";
 import { minusculoValidator } from "./minusculo.validator";
+import { UsuarioExisteService } from "./usuario-existe.service";
 
-@Component({
+@Component( {
   selector: 'app-novo-usuario',
   templateUrl: './novo-usuario.component.html',
-  styleUrls: ['./novo-usuario.component.css']
-})
+  styleUrls: [ './novo-usuario.component.css' ]
+} )
 export class NovoUsuarioComponent implements OnInit {
 
-  novoUsuariForm!: FormGroup;
+  novoUsuariForm! : FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private novoUsuarioService: NovoUsuarioService
-  ) { }
-
-  ngOnInit(): void {
-    this.novoUsuariForm = this.formBuilder
-      .group({
-        email: ['', [
-          Validators.required,
-          Validators.email
-        ]],
-        fullName: ['', [
-          Validators.required,
-          Validators.minLength(5)
-        ]],
-        userName: ['', [
-          minusculoValidator
-        ]],
-        password: ['']
-      })
+    private formBuilder : FormBuilder,
+    private novoUsuarioService : NovoUsuarioService,
+    private usuarioExistenteService : UsuarioExisteService
+  ) {
   }
 
-  cadastrar(){
+  ngOnInit() : void {
+    this.novoUsuariForm = this.formBuilder
+      .group( {
+        email: [ '', [
+          Validators.required,
+          Validators.email
+        ] ],
+        fullName: [ '', [
+          Validators.required,
+          Validators.minLength( 5 )
+        ] ],
+        userName: [ '',
+          [ minusculoValidator ],
+          [this.usuarioExistenteService.usuarioJaExite()]
+        ],
+        password: [ '' ]
+      } )
+  }
+
+  cadastrar() {
     const novoUsuario = this.novoUsuariForm.getRawValue() as NovoUsuario
-    console.log(novoUsuario)
+    console.log( novoUsuario )
   }
 }

@@ -11,8 +11,7 @@ export class NovoUsuarioService {
 
   constructor(
     private httpClient : HttpClient
-  ) {
-  }
+  ) {}
 
   cadastraNovoUsuario( novoUsario : NovoUsuario ) : Observable<NovoUsuario> {
     return this.httpClient.post<NovoUsuario>( `${ BASE.urlBase }/user/signup`, novoUsario )
