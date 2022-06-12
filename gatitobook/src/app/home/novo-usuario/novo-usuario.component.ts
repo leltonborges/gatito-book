@@ -5,6 +5,7 @@ import { NovoUsuario } from "./novo-usuario";
 import { minusculoValidator } from "./minusculo.validator";
 import { UsuarioExisteService } from "./usuario-existe.service";
 import { usuarioSenhaIguaisValidator } from "./usuario-senha-iguais.validator";
+import { Router } from "@angular/router";
 
 @Component( {
   selector: 'app-novo-usuario',
@@ -18,7 +19,8 @@ export class NovoUsuarioComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder,
     private novoUsuarioService : NovoUsuarioService,
-    private usuarioExistenteService : UsuarioExisteService
+    private usuarioExistenteService : UsuarioExisteService,
+    private router : Router
   ) {
   }
 
@@ -45,7 +47,11 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   cadastrar() {
-    const novoUsuario = this.novoUsuariForm.getRawValue() as NovoUsuario
-    console.log( novoUsuario )
+    if ( this.novoUsuariForm.valid ) {
+      const novoUsuario = this.novoUsuariForm.getRawValue() as NovoUsuario
+      this.novoUsuarioService.cadastraNovoUsuario( novoUsuario ).subscribe( result => {
+        this.router.navigate( [ '' ] )
+      }, error => console.log( error ) )
+    }
   }
 }
