@@ -4,6 +4,7 @@ import { NovoUsuarioService } from "./novo-usuario.service";
 import { NovoUsuario } from "./novo-usuario";
 import { minusculoValidator } from "./minusculo.validator";
 import { UsuarioExisteService } from "./usuario-existe.service";
+import { usuarioSenhaIguaisValidator } from "./usuario-senha-iguais.validator";
 
 @Component( {
   selector: 'app-novo-usuario',
@@ -24,20 +25,23 @@ export class NovoUsuarioComponent implements OnInit {
   ngOnInit() : void {
     this.novoUsuariForm = this.formBuilder
       .group( {
-        email: [ '', [
-          Validators.required,
-          Validators.email
-        ] ],
-        fullName: [ '', [
-          Validators.required,
-          Validators.minLength( 5 )
-        ] ],
-        userName: [ '',
-          [ minusculoValidator ],
-          [this.usuarioExistenteService.usuarioJaExite()]
-        ],
-        password: [ '' ]
-      } )
+          email: [ '', [
+            Validators.required,
+            Validators.email
+          ] ],
+          fullName: [ '', [
+            Validators.required,
+            Validators.minLength( 5 )
+          ] ],
+          userName: [ '',
+            [ minusculoValidator ],
+            [ this.usuarioExistenteService.usuarioJaExite() ]
+          ],
+          password: [ '' ]
+        },
+        {
+          validators: [ usuarioSenhaIguaisValidator ]
+        } )
   }
 
   cadastrar() {
