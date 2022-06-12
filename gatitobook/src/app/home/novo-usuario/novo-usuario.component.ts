@@ -51,7 +51,7 @@ export class NovoUsuarioComponent implements OnInit {
       const novoUsuario = this.novoUsuariForm.getRawValue() as NovoUsuario
       this.novoUsuarioService.cadastraNovoUsuario( novoUsuario ).subscribe( result => {
         this.router.navigate( [ '' ] )
-      }, error => console.log( error ) )
+      }, (error) => console.log( error ) )
     }
   }
 }
