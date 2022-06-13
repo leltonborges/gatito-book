@@ -9,7 +9,7 @@ export class TokenService {
 
   constructor() {}
 
-  retornaToken(){
+  getToken(){
     return localStorage.getItem(KEY) ?? '';
   }
 
@@ -22,6 +22,6 @@ export class TokenService {
   }
 
   possuiToken(): Boolean{
-    return !!this.retornaToken();
+    return !!this.getToken();
   }
 }
