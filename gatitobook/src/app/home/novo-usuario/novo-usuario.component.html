@@ -1,0 +1,50 @@
+<h3 class="text-center">Registre-se</h3>
+
+<form class="form mt-4" [formGroup]="novoUsuariForm" (submit)="cadastrar()">
+  <div class="form-group mb-3">
+    <input type="email" name="email" id="email" formControlName="email"
+           class="form-control" placeholder="example@example.com">
+    <app-mensagem
+      *ngIf="novoUsuariForm.get('email')?.errors?.['required']
+      && novoUsuariForm.get('email')?.touched"
+      mensagem="Email obrigatório"></app-mensagem>
+    <app-mensagem
+      *ngIf="novoUsuariForm.get('email')?.errors?.['email']
+      && novoUsuariForm.get('email')?.touched"
+      mensagem="Email no formato invalido"></app-mensagem>
+
+  </div>
+  <div class="form-group mb-3">
+    <input type="text" name="nome" id="nome" formControlName="fullName"
+           class="form-control" placeholder="Nome completo">
+    <app-mensagem
+      *ngIf="novoUsuariForm.get('fullName')?.errors
+      && novoUsuariForm.get('fullName')?.touched"
+      mensagem="Nome incorreto"></app-mensagem>
+  </div>
+  <div class="form-group mb-3">
+    <input type="text" name="usuario" id="usuario" formControlName="userName"
+           class="form-control" placeholder="login">
+    <app-mensagem
+      *ngIf="novoUsuariForm.get('userName')?.errors?.['minusculo']
+      && novoUsuariForm.get('userName')?.touched"
+      mensagem="Todos os caracteres tem que ser minusculas"></app-mensagem>
+    <app-mensagem
+      *ngIf="novoUsuariForm.get('userName')?.errors?.['usuarioExistente']"
+      mensagem="Usuário já existe"></app-mensagem>
+  </div>
+  <div class="form-group mb-3">
+    <input type="password" name="senha" id="senha" formControlName="password"
+           class="form-control" placeholder="Senha">
+    <app-mensagem
+      *ngIf="novoUsuariForm?.errors?.['usuarioIgualSenha']"
+      mensagem="Senha e usuário devem ser diferentes"></app-mensagem>
+  </div>
+  <div class="d-grid gap-2 mb-3">
+    <button class="btn btn-primary btn-block">Cadastro</button>
+  </div>
+</form>
+
+<!--<p>já cadastrado? <a routerLink="/home">Login</a></p>-->
+<p>já cadastrado? <a routerLink="">Login</a></p>
+
