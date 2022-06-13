@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from "../../autenticacao/usuario/usuario.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-cabecalho',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabecalhoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private usuarioServivce: UsuarioService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  user$ = this.usuarioServivce.getUsuario()
+
+  logout(): void{
+    this.usuarioServivce.logout()
+    this.router.navigate([''])
+  }
 }
