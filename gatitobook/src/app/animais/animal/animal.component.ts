@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BASE } from "../../../config/app.config";
+import { environment } from "../../../environments/environment";
 
 @Component( {
   selector: 'app-animal',
@@ -23,7 +23,7 @@ export class AnimalComponent implements OnInit {
   @Input()
   set url( value : string ) {
     if ( value.startsWith( 'data' ) ) this.url = value;
-    else this.url = `${ BASE.urlBase }/imgs/${ value }`
+    else this.url = `${ environment.urlBase }/imgs/${ value }`
   }
 
   get descricao() : string {

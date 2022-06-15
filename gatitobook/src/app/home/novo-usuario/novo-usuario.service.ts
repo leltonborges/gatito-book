@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { NovoUsuario } from "./novo-usuario";
-import { BASE } from "../../../config/app.config";
 import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 @Injectable( {
   providedIn: 'root'
@@ -14,10 +14,10 @@ export class NovoUsuarioService {
   ) {}
 
   cadastraNovoUsuario( novoUsario : NovoUsuario ) : Observable<NovoUsuario> {
-    return this.httpClient.post<NovoUsuario>( `${ BASE.urlBase }/user/signup`, novoUsario )
+    return this.httpClient.post<NovoUsuario>( `${ environment.urlBase }/user/signup`, novoUsario )
   }
 
   verificaUsuarioExistente( nomeUsuario : string ): Observable<NovoUsuario> {
-    return this.httpClient.get<NovoUsuario>( `${ BASE.urlBase }/user/exists/${nomeUsuario}` )
+    return this.httpClient.get<NovoUsuario>( `${ environment.urlBase }/user/exists/${nomeUsuario}` )
   }
 }
