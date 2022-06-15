@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cartao',
@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cartao.component.css']
 })
 export class CartaoComponent implements OnInit {
+  private _titulo: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  get titulo() : string {
+    return this._titulo;
+  }
+
+  @Input()
+  set titulo( value : string ) {
+    this._titulo = value;
+  }
 }

@@ -10,6 +10,9 @@ import { CartaoComponent } from './cartao.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    CartaoComponent
   ]
 })
 export class CartaoModule { }
