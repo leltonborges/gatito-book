@@ -1,1 +1,12 @@
-<p>detalhe-animal works!</p>
+<main class="bg-white border" *ngIf="animail$ |  async as animal">
+  <section class="row">
+    <div class="col-lg-8 col-md-8">
+      <app-animal [url]="animal.url" [descricao]="animal.description"></app-animal>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <smal>
+        <p class="text-left text-break">{{animal.description}}</p>
+      </smal>
+    </div>
+  </section>
+</main>
