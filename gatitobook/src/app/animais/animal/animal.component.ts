@@ -7,7 +7,7 @@ import { environment } from "../../../environments/environment";
   styleUrls: [ './animal.component.css' ]
 } )
 export class AnimalComponent implements OnInit {
-  private _url : string = '';
+  private urlOriginal : string = '';
   private _descricao : string = '';
 
   constructor() {
@@ -16,14 +16,14 @@ export class AnimalComponent implements OnInit {
   ngOnInit() : void {
   }
 
-  get url() : string {
-    return this._url;
-  }
-
   @Input()
   set url( value : string ) {
-    if ( value.startsWith( 'data' ) ) this.url = value;
-    else this.url = `${ environment.urlBase }/imgs/${ value }`
+    if ( value.startsWith( 'data' ) ) this.urlOriginal = value;
+    else this.urlOriginal = `${ environment.urlBase }/imgs/${ value }`
+  }
+
+  get url() : string {
+    return this.urlOriginal;
   }
 
   get descricao() : string {

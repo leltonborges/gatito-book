@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Animais, Animal } from "../animal";
 
-@Component({
+@Component( {
   selector: 'app-grade-fotos-animais',
   templateUrl: './grade-fotos-animais.component.html',
-  styleUrls: ['./grade-fotos-animais.component.css']
-})
+  styleUrls: [ './grade-fotos-animais.component.css' ]
+} )
 export class GradeFotosAnimaisComponent implements OnInit {
 
-  constructor() { }
+  private _animais : Animais;
 
-  ngOnInit(): void {
+  constructor() {
+    this._animais = new Array<Animal>()
   }
 
+  ngOnInit() : void {
+  }
+
+  get animais() : Animais {
+    return this._animais;
+  }
+
+  @Input()
+  set animais( value : Animais ) {
+    this._animais = value;
+  }
 }
