@@ -17,10 +17,13 @@ export class AnimaisService {
   }
 
   listDoUsuario( nomeUsuario : String ) : Observable<Animais> {
-    const token = this.tokenService.getToken()
-    const headers = new HttpHeaders().append( 'x-access-token', token )
-    return this.httpClient.get<Animais>(
-      `${ environment.urlBase }/${ nomeUsuario }/photos`,
-      { headers } )
+    if ( nomeUsuario ) {
+      const token = this.tokenService.getToken()
+      const headers = new HttpHeaders().append( 'x-access-token', token )
+      return this.httpClient.get<Animais>(
+        `${ environment.urlBase }/${ nomeUsuario }/photos`,
+        { headers } )
+    }
+    return new Observable<Animais>()
   }
 }
