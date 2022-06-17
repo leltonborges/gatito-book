@@ -6,6 +6,11 @@
     <div class="col-lg-4 col-md-4">
       <small>
         <p class="text-left text-break">{{animal.description}}</p>
+        <i (click)="likePhoto()"
+           class="fa fa-heart-o mr-2 fa-2x pull-left">{{animal.likes}}</i>
+        <i class="fa fa-comment-o mr-2 fa-2x pull-left">{{animal.comments}}</i>
+        <i (click)="deletePhoto()"
+           class="fa fa-trash-o fa-2x pull-right"></i>
       </small>
     </div>
   </section>

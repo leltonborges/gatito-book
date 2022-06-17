@@ -35,7 +35,7 @@ export class AnimaisService {
 
   likePhoto( id : number ) : Observable<Boolean> {
     return this.httpClient.post(
-      `${ environment.urlBase }/photos/${ id }/likes`,
+      `${ environment.urlBase }/photos/${ id }/like`,
       {},
       { observe: 'response' })
       .pipe(
