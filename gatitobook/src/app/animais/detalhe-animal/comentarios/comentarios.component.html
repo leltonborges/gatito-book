@@ -17,8 +17,9 @@
         </button>
       </div>
       <app-mensagem
-      mensagem="Tamanho máximo de 300 caracteres"
-      *ngIf="!!comentarioForm.get('comentario)?.errors?.maxlength"></app-mensagem>
+        *ngIf="!!comentarioForm.get('comentario')?.errors?.['maxLength']"
+        mensagem="Tamanho máximo de 300 caracteres"
+      ></app-mensagem>
     </form>
   </div>
 </section>
