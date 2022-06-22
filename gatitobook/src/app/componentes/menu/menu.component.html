@@ -1,1 +1,11 @@
-<p>menu works!</p>
+<nav [ngClass]="{'active-menu': mostraMenu}">
+  <aside class="menu-bar">
+    <i (click)="abreMenu()"
+       (keyup.space)="abreMenu()"
+       class="fa fa-window-close">
+    </i>
+    <ng-content></ng-content>
+  </aside>
+
+  <aside class="overlay" (click)="abreMenu()"></aside>
+</nav>
