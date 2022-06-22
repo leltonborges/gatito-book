@@ -1,4 +1,4 @@
-<nav [ngClass]="{'active-menu': mostraMenu}">
+<section [ngClass]="{'active-menu': mostraMenu}">
   <aside class="menu-bar">
     <i (click)="abreMenu()"
        (keyup.space)="abreMenu()"
@@ -8,4 +8,4 @@
   </aside>
 
   <aside class="overlay" (click)="abreMenu()"></aside>
-</nav>
+</section>
