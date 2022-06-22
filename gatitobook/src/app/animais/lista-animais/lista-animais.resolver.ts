@@ -24,3 +24,4 @@ export class ListaAnimaisResolver implements Resolve<Animais> {
       );
   }
 }
+
