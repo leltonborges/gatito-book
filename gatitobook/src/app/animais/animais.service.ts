@@ -46,4 +46,18 @@ export class AnimaisService {
       )
   }
 
+  uploadFile(descricao : string, isComentario : boolean, arquivo : File) : Observable<any> {
+    const formData = new FormData();
+    formData.append('description', descricao);
+    formData.append('allowComments', isComentario ? 'true' : 'false');
+    formData.append('imageFile', arquivo);
+
+    return this.httpClient.post(
+      `${ environment.urlBase }/photos/upload`,
+      formData,
+      {
+        observe: 'events',
+        reportProgress: true
+      });
+  }
 }
