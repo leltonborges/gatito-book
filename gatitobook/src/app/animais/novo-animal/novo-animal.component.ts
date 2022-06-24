@@ -4,7 +4,6 @@ import { AnimaisService } from "../animais.service";
 import { Router } from "@angular/router";
 import { finalize } from "rxjs";
 import { HttpEvent, HttpEventType } from "@angular/common/http";
-import { log } from "util";
 
 @Component({
   selector: 'app-novo-animal',

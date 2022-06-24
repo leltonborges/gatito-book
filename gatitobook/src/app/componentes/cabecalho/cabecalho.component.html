@@ -1,4 +1,4 @@
-<header class="sticky-top container">
+<header class="sticky-top container-fluid">
   <nav class="navbar navbar-light bg-white">
     <a class="navbar-brand">
       <i (click)="menu.abreMenu()"
@@ -9,7 +9,7 @@
     <app-menu #menu>
       <ul class="list-unstyled">
         <li>
-          <a [routerLink]="['animais', 'novo']">Novo Animal</a>
+          <a [routerLink]="['animais','novo']">Novo Animal</a>
         </li>
       </ul>
     </app-menu>

@@ -14,12 +14,12 @@ const routes : Routes = [
     }
   },
   {
-    path: ':animaId',
-    component: DetalheAnimalComponent
-  },
-  {
     path: 'novo',
     component: NovoAnimalComponent
+  },
+  {
+    path: ':animaId',
+    component: DetalheAnimalComponent
   }
 ];
 
