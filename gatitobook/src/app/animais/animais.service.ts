@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpStatusCode } from "@angular/common/http";
+import { catchError, mapTo, Observable, of, throwError } from "rxjs";
 import { Animais, Animal } from "./animal";
 import { TokenService } from "../autenticacao/token.service";
 import { environment } from "../../environments/environment";
@@ -29,4 +29,35 @@ export class AnimaisService {
       `${ environment.urlBase }/photos/${ id }` )
   }
 
+  deleteById( id : number ) : Observable<Animal> {
+    return this.httpClient.delete<Animal>( `${ environment.urlBase }/photos/${ id }` )
+  }
+
+  likePhoto( id : number ) : Observable<Boolean> {
+    return this.httpClient.post(
+      `${ environment.urlBase }/photos/${ id }/like`,
+      {},
+      { observe: 'response' })
+      .pipe(
+        mapTo(true),
+        catchError(err => {
+          return err.status === HttpStatusCode.NotModified ? of(false) : throwError(err)
+        })
+      )
+  }
+
+  uploadFile(descricao : string, isComentario : boolean, arquivo : File) : Observable<any> {
+    const formData = new FormData();
+    formData.append('description', descricao);
+    formData.append('allowComments', isComentario ? 'true' : 'false');
+    formData.append('imageFile', arquivo);
+
+    return this.httpClient.post(
+      `${ environment.urlBase }/photos/upload`,
+      formData,
+      {
+        observe: 'events',
+        reportProgress: true
+      });
+  }
 }

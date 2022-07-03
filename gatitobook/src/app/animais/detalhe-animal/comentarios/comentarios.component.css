@@ -1,0 +1,13 @@
+ul.comment > li:hover{
+  background: #c4c4c4;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+ul.comment > li{
+  margin-top: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+  border-radius: 5px;
+}

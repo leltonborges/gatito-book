@@ -1,6 +1,18 @@
-<header class="sticky-top container">
+<header class="sticky-top container-fluid">
   <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand">Gatito Book</a>
+    <a class="navbar-brand">
+      <i (click)="menu.abreMenu()"
+         (keyup.space)="menu.abreMenu()"
+         class="fa fa-bars mr-2"></i>
+      Gatito Book
+    </a>
+    <app-menu #menu>
+      <ul class="list-unstyled">
+        <li>
+          <a [routerLink]="['animais','novo']">Novo Animal</a>
+        </li>
+      </ul>
+    </app-menu>
     <div *ngIf="user$ | async as user">
       <div *ngIf="user.name; else login ">
         <i class="fa fa-user-circle"></i>
@@ -8,6 +20,7 @@
         <a (click)="logout()">Sair</a>
       </div>
     </div>
+
   </nav>
   <ng-template #login>
     <span class="navbar-text">
