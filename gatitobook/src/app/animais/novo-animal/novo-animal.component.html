@@ -1,0 +1,46 @@
+<main class="container">
+  <form [formGroup]="formAnimal"
+        class="row" (submit)="upload()">
+    <section class="col-md-6 text-center">
+      <div *ngIf="!preview; else previewImage">
+        <button type="button" class="btn btn-primary"
+                (click)="fileInput.click()">
+          <i class="fa fa-image fa-5x align-middle"></i>
+        </button>
+        <input #fileInput type="file" hidden name="file"
+               formControlName="file" accept="image/*"
+               (change)="gravaArquivo($event.target)"/>
+      </div>
+      <app-mensagem
+        *ngIf="formAnimal.get('file')?.errors?.['required']"
+        mensagem="Selecione uma foto"></app-mensagem>
+      <ng-template #previewImage>
+        <app-animal [url]="preview" title="Preview"></app-animal>
+      </ng-template>
+    </section>
+    <section class="col-md-6">
+      <div class="form-group">
+        <textarea formControlName="description" placeholder="Descrição"
+                  class="form-control form-control-sm"></textarea>
+        <app-mensagem
+          *ngIf="!!formAnimal.get('description')?.errors?.['maxLength']"
+          mensagem="Tamanho máximo do campo é 300 caracteres"></app-mensagem>
+      </div>
+      <div class="form-group">
+        <input type="checkbox" name="comments" id="comments" formControlName="allowComments">
+        <label for="comments" class="text-muted ml-2">Permite comentários</label>
+      </div>
+      <div
+        *ngIf="!percentualConcluido; else uploadProgress">
+        <button [disabled]="formAnimal.invalid"
+                type="submit" class="btn btn-primary btn-block">Enviar
+        </button>
+        <a routerLink="['animais']" class="btn btn-secondary btn-block">Cancelar</a>
+      </div>
+      <ng-template #uploadProgress>
+        <span class="text-center display-4"> Percentual de upload: {{percentualConcluido}}</span>
+      </ng-template>
+    </section>
+  </form>
+</main>
+
